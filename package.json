@@ -7,7 +7,7 @@
     "dev": "DEV=true node ./dev-server/dev-server.js",
     "start": "node ./dev-server/dev-server.js",
     "e2e": "node smoke.e2e.test.js",
-    "lint": "eslint script.js --fix"
+    "lint": "eslint script.mjs --fix"
   },
   "keywords": [],
   "author": "",
