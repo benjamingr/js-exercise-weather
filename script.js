@@ -73,7 +73,7 @@ async function getWeatherInCelcius({ lat, long, signal }) {
 function renderAnimation({ icon }) {
   // clear canvas from old animation
   animationCanvas$.getContext('2d').clearRect(0, 0, animationCanvas$.width, animationCanvas$.height);
-  const skycons = new Skycons({ color: 'grey' });
+  const skycons = new Skycons({ color: '#969696' });
   // https://www.dr-lex.be/software/darksky-icons.html
   const iconToConst = {
     'clear-day': Skycons.CLEAR_DAY,
