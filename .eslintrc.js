@@ -10,6 +10,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
   },
+  globals: {
+    Skycons: 'readonly',
+  },
   rules: {
     'no-use-before-define': ['off'],
   },
