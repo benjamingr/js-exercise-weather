@@ -1,4 +1,8 @@
-## If you're seein this on my GitHub
+## Demo
+
+[![Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/benjamingr/js-exercise-weather)
+
+## If you're seeing this on my GitHub
 
 I am doing fun exercises I run into ^_^
 
