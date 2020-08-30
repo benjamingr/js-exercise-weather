@@ -5,16 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@main
+        uses: actions/checkout@v2
       - name: Install
-        uses: benjamingr/js-exercise-weather@main # TODO: can I use a variable here?
+        uses: benjamingr/js-exercise-weather 
         with:
           args: npm install
       - name: Lint
-        uses: benjamingr/js-exercise-weather@main
+        uses: benjamingr/js-exercise-weather
         with:
           args: npm run lint
       - name: Test
-        uses: benjamingr/js-exercise-weather@main
+        uses: benjamingr/js-exercise-weather
         with:
           args: npm run e2e
