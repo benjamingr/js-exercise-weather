@@ -5,12 +5,12 @@
   "main": "script.js",
   "scripts": {
     "dev": "DEV=true node ./dev-server/dev-server.js",
-    "e2e": "node sanity.e2e.test.js",
+    "e2e": "node smoke.e2e.test.js",
     "lint": "eslint script.js --fix"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "cors-anywhere": "^0.4.3",
     "eslint": "^7.7.0",
