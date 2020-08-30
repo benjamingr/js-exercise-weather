@@ -7,14 +7,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install
-        uses: benjamingr/js-exercise-weather 
+        uses: benjamingr/js-exercise-weather@main
         with:
           args: npm install
       - name: Lint
-        uses: benjamingr/js-exercise-weather
+        uses: benjamingr/js-exercise-weather@main
         with:
           args: npm run lint
       - name: Test
-        uses: benjamingr/js-exercise-weather
+        uses: benjamingr/js-exercise-weather@main
         with:
           args: npm run e2e
