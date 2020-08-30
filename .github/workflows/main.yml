@@ -1,20 +1,43 @@
-name: Main
-on: push
+name: Run e2e tests
+
+on: [pull_request, push]
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  run-examples:
+    runs-on: ubuntu-18.04
+    continue-on-error: ${{ matrix.continueOnError }}
+
+    strategy:
+      matrix:
+        continueOnError: [true]
+        timeoutMinutes: [5]
+        node: [14]
+
+    name: E2E Test
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install
-        uses: ./
+      - uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v1
         with:
-          args: npm install
-      - name: Lint
-        uses: ./
+          node-version: ${{ matrix.node }}
+
+      - uses: microsoft/playwright-github-action@v1
+
+      - name: restore node modules cache
+        uses: actions/cache@v2
         with:
-          args: npm run lint
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+  
+      - run: npm install
+      - run: npm run lint
+
       - name: Test
-        uses: ./
-        with:
-          args: npm run e2e
+        run: xvfb-run --auto-servernum npm run e2e
+
+      - name: Cleanup xvfb pidx
+        uses: bcomnes/cleanup-xvfb@v1
