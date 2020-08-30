@@ -12,7 +12,7 @@ tabsWrapper$.addEventListener('click', async (e) => {
   if (!e.target.classList.contains('tab')) {
     return;
   }
-  const { lat, long } = e.target.dataset;
+  const { lat, long } = await getLocationFromSelection(e.target);
   const locationName = e.target.textContent;
   if (controller) {
     controller.abort();
@@ -36,6 +36,20 @@ const API_URL = location.href.includes('localhost') ? './' : API_BASE;
 
 const getWeather = ({ lat, long, signal }) => fetch(`${API_URL}/${lat},${long}`, { signal });
 
+async function getLocationFromSelection(target) {
+  const { long, lat, iscurrent } = target.dataset;
+  if (!iscurrent) {
+    return { long, lat };
+  }
+  if (!navigator.geolocation) {
+    throw new Error('Current location disabled due to browser limitation');
+  }
+  const response = await new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+  const { latitude, longitude } = response.coords;
+  return { long: longitude, lat: latitude };
+}
 async function getWeatherInCelcius({ lat, long, signal }) {
   const weather = await getWeather({ lat, long, signal }).then((x) => x.json());
   const farenheit = weather?.currently?.temperature;
@@ -56,10 +70,10 @@ function renderError(e) {
 }
 function renderLoader() {
   loader$.style.display = 'block';
-  container$.classList.add('hidden');
+  container$.setAttribute('hidden', 'true');
 }
 
 function hideLoader() {
   loader$.style.display = 'none';
-  container$.classList.remove('hidden');
+  container$.removeAttribute('hidden');
 }
