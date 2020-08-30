@@ -2,14 +2,13 @@ const { launch } = require('@testim/root-cause');
 const assert = require('assert');
 
 // Too lazy to add a test runner like Jest/Mocha but probably should  ¯\_(ツ)_/¯
-launch({ testName: 'Sanity' }, async (page) => {
+launch({ testName: 'Sanity', automationLibrary: 'playwright' }, async (page) => {
   // eslint-disable-next-line global-require
   require('./dev-server/dev-server');
   // wait for server to start
   await retry(() => page.goto('http://localhost:1337'));
-  await page.setRequestInterception(true);
-  page.on('request', (request) => {
-    request.respond({
+  await page.route('**/*', (request) => {
+    request.fulfill({
       status: 200,
       contentType: 'application/json',
       body: JSON.stringify(mockApiResponse()),

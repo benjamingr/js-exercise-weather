@@ -7,7 +7,7 @@
     "dev": "DEV=true node ./dev-server/dev-server.js",
     "start": "node ./dev-server/dev-server.js",
     "e2e": "node smoke.e2e.test.js",
-    "lint": "eslint script.js --fix"
+    "lint": "eslint script.mjs --fix"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +17,8 @@
     "eslint": "^7.7.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "http-server": "^0.12.3"
+    "http-server": "^0.12.3",
+    "playwright": "^1.3.0"
   },
   "dependencies": {
     "@testim/root-cause": "^0.1.14",
