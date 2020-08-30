@@ -32,12 +32,12 @@ jobs:
             node_modules
             */*/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-  
+
       - run: npm install
       - run: npm run lint
 
-      - name: Test
-        run: xvfb-run --auto-servernum npm run e2e
+      # - name: Test
+      #   run: xvfb-run --auto-servernum npm run e2e
 
-      - name: Cleanup xvfb pidx
-        uses: bcomnes/cleanup-xvfb@v1
+      # - name: Cleanup xvfb pidx
+      #   uses: bcomnes/cleanup-xvfb@v1
