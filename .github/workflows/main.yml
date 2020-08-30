@@ -1,0 +1,20 @@
+name: Main
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Install
+        uses: benjamingr/js-exercise-weather@main # TODO: can I use a variable here?
+        with:
+          args: npm install
+      - name: Lint
+        uses: benjamingr/js-exercise-weather@main
+        with:
+          args: npm run lint
+      - name: Test
+        uses: benjamingr/js-exercise-weather@main
+        with:
+          args: npm run e2e
