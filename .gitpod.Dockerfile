@@ -1,4 +1,5 @@
 FROM gitpod/workspace-full
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
 # Install custom tools, runtimes, etc.
 # For example "bastet", a command-line tetris clone:
