@@ -42,7 +42,8 @@ tabsWrapper$.querySelector('[data-iscurrent]').click();
 
 const API_BASE = 'https://api.darksky.net/forecast/557ecd4b8c8bbba02f4a50afe884934b';
 /* eslint-disable-next-line no-restricted-globals */
-const API_URL = location.href.includes('localhost') ? './' : API_BASE;
+const isTestEnv = location.href.includes('localhost') || location.href.includes('gitpod');
+const API_URL = isTestEnv ? './' : API_BASE;
 
 const getWeather = ({ lat, long, signal }) => fetch(`${API_URL}/${lat},${long}`, { signal });
 
